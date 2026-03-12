@@ -1,0 +1,13 @@
+run_id,model,seed,optimizer,lr,batch_size,dropout,weight_decay,clip_norm,scheduler,metric_primary (accuracy),best_val_epoch,notes
+week1-baseline,small-MLP,42,Adam,0.01,128,None,None,None,None,0.8473,50,This is the week 1 baseline model.
+baseline_experiment_10_epoch,small-MLP,42,Adam,0.01,128,None,None,None,None,0.829,50,"The accuracy decreased due to underfitting, since we had less epochs."
+baseline_experiment_20_epoch,small-MLP,42,Adam,0.01,128,None,None,None,None,0.8429,50,"The accuracy decreased due to underfitting, since we had less epochs."
+baseline_experiment_50_epoch,small-MLP,42,Adam,0.01,128,None,None,None,None,0.8473,50,This is the same as the week 1 baseline model.
+baseline_experiment_100_epoch,small-MLP,42,Adam,0.01,128,None,None,None,None,0.8418,50,"The accuracy decreased due to overfitting, since we had too many epochs, we also saw higher loss."
+overfit_experiment,100-HL-size,42,Adam,0.01,128,None,None,None,None,0.8712,100,"Due to overfitting on the larger model, the accuracy isn't as good and the loss was much higher."
+ovefit_debug,small-MLP,42,AdamW,0.01,128,0.2,0.01,None,None,0.9373,100,"With dropout and weight decay added, the larger model does not overfit and now has better accuracy and lower loss."
+unstable_experiment,2-HL-size,42,AdamW,1.00E-05,128,None,3.0,None,None,0.1838,100,This model had terrible performance due to severe underfitting.
+unstable_debug_lr_fix,small-MLP,42,AdamW,1.00E-02,128,None,3.0,None,None,0.8096,100,"With a non-trivial larger learning rate, our unstable model was able to learn properly and accuracy improved."
+unstable_debug_weight_decay_fix,small-MLP,42,AdamW,1.00E-05,128,None,0.01,None,None,0.8773,100,"Decreasing the weight_decay from the previous model helped speed up learning so it didn't plateau, the previous model had too high a weight_decay so its performance was worse at the end of training."
+baseline_LSTM,LSTM-128-HL,67,AdamW,0.01,128,None,0.01,None,None,0.9238,60,This is the week 3 baseline RNN.
+robust_LSTM,LSTM-128-HL,67,AdamW,0.01,128,None,0.01,max_norm=1.0,Torch Optim StepLR,0.913,60,Performed marginally worse than baseline despite upgrades.
